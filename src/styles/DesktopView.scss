@@ -1,0 +1,13 @@
+.desktop-view-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .desktop-view-sub-wrapper {
+        display: flex;
+        height: 100%;
+        .content-wrapper {
+            width: 100%;
+            padding: 50px;
+        }
+    }
+}

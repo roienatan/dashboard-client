@@ -1,0 +1,34 @@
+.menu-desktop-wrapper {
+    width: 250px;
+    position: relative;
+    padding: 15px 0px;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .minimize-menu {
+        position: absolute;
+        top: 50%;
+        right: 0;
+    }
+
+    .options-wrapper {
+        .option {
+            cursor: pointer;
+            padding-left: 20px;
+            &.selected {
+                border-left: solid 5px;
+                padding-left: 15px;
+            }
+        }
+        .option:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+.hamburger-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
