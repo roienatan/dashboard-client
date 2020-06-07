@@ -1,0 +1,10 @@
+.user-box-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    padding: 15px;
+    width: 200px;
+    .name {
+        font-weight: bold;
+    }
+}

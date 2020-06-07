@@ -1,0 +1,8 @@
+.users-wrapper {
+    position: relative;
+    height: 100%;
+    .users-elements-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

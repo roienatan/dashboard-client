@@ -28,7 +28,7 @@ function Login() {
                 <input type='password' id='password' value={password} onChange={e => setPassword(e.target.value)}/>
                 <button className={disabled ? 'login-btn disabled' : 'login-btn'} onClick={() => dispatch(login(true))}>
                     Sign In
-                    {/* {pendingServer && <Spinner type='button' />} */}
+                    {/* {loading && <Loading />} */}
                 </button>
 
             </div>
