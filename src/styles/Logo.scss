@@ -1,3 +1,9 @@
 .logo-wrapper {
     margin-right: auto;
+    display: flex;
+    align-items: center;
+    .logo-title {
+        font-size: 35px;
+        margin-left: 10px;
+    }
 }

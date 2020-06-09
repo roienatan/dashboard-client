@@ -1,7 +1,4 @@
 import React, { useContext } from 'react';
-//{ useState, useEffect }
-//import { useSelector, useDispatch } from 'react-redux';
-//import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import '../styles/DesktopView.scss';
 import TopBarDesktop from './TopBar/TopBarDesktop';
 import MenuDesktop from './Menu/MenuDesktop';

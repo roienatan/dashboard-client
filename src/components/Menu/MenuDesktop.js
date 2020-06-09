@@ -12,12 +12,16 @@ export default function MenuDesktop() {
     const location = useLocation();
     const [toggle, setToggle] = useState(true);
     const color = useContext(ThemeContext);
-    const manuOptions = MENU_OPTIONS.map((option, index) => {
-        return <div
+    const menuOptions = [];
+    const moreOptions = [];
+
+    MENU_OPTIONS.forEach((option, index) => {
+        const optionDiv = <div
             key={index}
             className={location.pathname.includes(option.pathname) ? 'option selected' : 'option'}
             style={{ borderColor: `${color.highlightedColor}` }}
             onClick={() => history.push(`/${option.pathname}`)}>{option.name}</div>
+        option.main ? menuOptions.push(optionDiv) : moreOptions.push(optionDiv);
     })
 
     return (
@@ -28,15 +32,10 @@ export default function MenuDesktop() {
                         <ArrowIcon fill={color.textColor} />
                     </div>
                     <div className='options-wrapper'>
-                        {manuOptions}
+                        {menuOptions}
                     </div>
                     <div className='options-wrapper'>
-                        <div
-                            className={location.pathname.includes('support') ? 'option selected' : 'option'}
-                            onClick={() => history.push('/support')}>Support</div>
-                        <div
-                            className={location.pathname.includes('about') ? 'option selected' : 'option'}
-                            onClick={() => history.push('/about')}>About</div>
+                        {moreOptions}
                     </div>
                 </div> : <div className='hamburger-wrapper' onClick={() => setToggle(!toggle)}>
                         <HamburgerIcon fill={color.textColor} />

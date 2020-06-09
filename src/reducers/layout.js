@@ -1,11 +1,13 @@
-import { TOGGLE_DARK_MODE, CHANGE_SCREEN_SIZE } from '../constants/action-types';
+import { TOGGLE_DARK_MODE, CHANGE_SCREEN_SIZE, TOGGLE_MENU, TOGGLE_USER_TOOLTIP } from '../constants/action-types';
 import { LIGHT_MODE, DARK_MODE } from '../constants/colors';
 import { getScreenSize } from '../utils';
 
 const initialState = {
     darkMode: true,
     color: DARK_MODE,
-    screenSize: getScreenSize()
+    screenSize: getScreenSize(),
+    showMenu: false,
+    showUserTooltip: false
 };
 
 
@@ -24,6 +26,19 @@ export const layoutReducer = (state = initialState, action) => {
                 screenSize: action.screenSize
             }
         }
+        case TOGGLE_MENU:
+            return {
+                ...state,
+                showMenu: action.showMenu,
+                showUserTooltip: false
+
+            }
+        case TOGGLE_USER_TOOLTIP:
+            return {
+                ...state,
+                showUserTooltip: action.showUserTooltip,
+                showMenu: false
+            }
         default: return state;
     }
 }

@@ -1,5 +1,8 @@
+@import "./base/colors.scss";
+@import "./base/constants.scss";
+
 .app-wrapper {
-    height: 100vh;
+    height: 100%;
 }
 svg:hover {
     opacity: 0.8;
@@ -14,6 +17,38 @@ form {
 label {
     display: flex;
     flex-direction: column;
-    font-size: 12px;
+    font-size: 11px;
     margin: 10px;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    color: white;
+    margin-top: 10px;
+}
+
+option {
+    background-color: $modal-background;
+}
+
+select {
+    background-color: transparent;
+    color: white;
+    border: none;
+    margin-top: 10px;
+}
+
+fieldset {
+    border-color: $gray;
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+    .app-wrapper {
+        height: auto;
+    }
+    svg:hover {
+        opacity: 1;
+    }
 }

@@ -8,6 +8,7 @@ export default function Logo() {
     return (
         <div className='logo-wrapper'>
             <LogoIcon fill={color.textColor} width='70px' />
+            <div className='logo-title'>super.</div>
         </div>
     )
 }

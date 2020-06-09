@@ -1,0 +1,21 @@
+.top-bar-mobile-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .top-bar {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .content-wrapper {
+        position: relative;
+        width: 100%;
+        .current-view-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+    }
+}

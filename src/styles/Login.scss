@@ -1,15 +1,21 @@
-@import "./base/colors.scss";
+@import './base/colors.scss';
+@import './base/constants.scss';
 
 .login-wrapper {
-    background: url("../assets/welcome.jpg") no-repeat center;
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
+    .login-image {
+        background: url("../assets/welcome.jpg") no-repeat center;
+        background-size: cover;
+        height: 100vh;
+        width: 100vw;
+        opacity: 0.8;
+    }
     .logo-wrapper {
+        position: fixed;
         display: flex;
         align-items: center;
         font-size: 50px;
         font-weight: 500;
+        top: 0;
     }
     .signin-wrapper {
         position: fixed;
@@ -18,13 +24,29 @@
         display: flex;
         flex-direction: column;
         background-color: $white;
-        padding: 30px 55px 55px;
+        padding: 30px 40px 10px;
         border-top: 5px solid $gray;
         width: 250px;
         .login-title {
             color: $main-black;
             font-size: 36px;
             margin-bottom: 25px;
+        }
+        .login-error-wrapper {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin: 15px 0px;
+            .error-text {
+                margin-left: 12px;
+            }
+        }
+        .form-decoration {
+            &.disabled {
+                opacity: 0.5;
+                pointer-events: none;
+                animation: fade-in forwards 0.2s;
+            }
         }
         .login-btn {
             height: 40px;
@@ -58,9 +80,10 @@
     }
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width:  $mobile-breakpoint) {
     .logo-wrapper {
-        justify-content: center;
+        left: 50%;
+        transform: translateX(-50%);
     }
     .signin-wrapper {
         left: 50%;

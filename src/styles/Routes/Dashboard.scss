@@ -1,12 +1,11 @@
 @import '../../styles/base/colors.scss';
 @import '../../styles/base/constants.scss';
 
-.users-wrapper {
+.dashboard-wrapper{
     position: relative;
     height: 100%;
-    .users-elements-wrapper {
-        display: flex;
-        flex-wrap: wrap;
+    .tasks-elements-wrapper {
+        
         .nothing-here {
             position: absolute;
             top: 50%;
@@ -18,10 +17,8 @@
     }
 }
 
-@media only screen and (max-width:  $mobile-breakpoint) {
-    .users-elements-wrapper{
-        justify-content: center;
-    }
-}
-
-
+// @media only screen and (max-width:  $mobile-breakpoint) {
+//     .tasks-elements-wrapper{
+//         justify-content: center;
+//     }
+// }

@@ -1,0 +1,40 @@
+@import "../styles/base/constants.scss";
+@import "./base/colors.scss";
+
+.tooltip-wrapper {
+    position: absolute;
+    z-index: 5;
+    background-color: black;
+    width: 300px;
+    right: 0;
+    height: 300px;
+    box-shadow: 0px 5px 15px 0px rgba(0,0,0,1);
+    top: 90px;
+    .logout {
+        display: flex;
+        cursor: pointer;
+        color: $red;
+        padding: 20px;
+    }
+    .logout:hover{
+        opacity: 0.8;
+    }
+}
+
+.tooltip-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 18px;
+    margin-left: -5px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+    //box-shadow: 1px 1px 20px 0px rgba(0,0,0,1);
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+    .tooltip-wrapper {
+        width: 100%;
+    }
+}

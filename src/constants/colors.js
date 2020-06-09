@@ -13,7 +13,7 @@ export const LIGHT_MODE = {
     mainBackgroundColor: COLORS.mainWhite,
     contentBackgroundColor: COLORS.contentWhite,
     ActionsBarColor: COLORS.contentWhiteDarker,
-    highlightedColor: COLORS.black,
+    highlightedColor: COLORS.cyan,
     textColor: COLORS.contentBlack
 }
 

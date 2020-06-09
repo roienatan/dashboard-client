@@ -1,13 +1,28 @@
 import * as types from '../constants/action-types';
 
-export const login = authenticated => ({
-    type: types.AUTHENTICATED,
-    authenticated
+export const login = ({ username, password }) => ({
+    type: types.LOGIN,
+    username,
+    password
+})
+
+export const logout = () => ({
+    type: types.LOGOUT
 })
 
 export const toggleDarkMode = darkMode => ({
     type: types.TOGGLE_DARK_MODE,
     darkMode
+})
+
+export const toggleMenu = showMenu => ({
+    type: types.TOGGLE_MENU,
+    showMenu
+})
+
+export const toggleUserTooltip = showUserTooltip => ({
+    type: types.TOGGLE_USER_TOOLTIP,
+    showUserTooltip
 })
 
 
@@ -28,4 +43,23 @@ export const toggleAddUser = showAddUser => ({
 export const addUser = userDetails => ({
     type: types.ADD_USER,
     userDetails
+})
+
+export const addTask = taskDetails => ({
+    type: types.ADD_TASK,
+    taskDetails
+})
+
+export const getUserTasks = userId => ({
+    type: types.GET_USER_TASKS,
+    userId
+})
+
+export const getAllTasks = () => ({
+    type: types.GET_ALL_TASKS
+})
+
+export const toggleAddTask = showAddTask => ({
+    type: types.TOGGLE_ADD_TASK,
+    showAddTask
 })
