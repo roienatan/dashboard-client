@@ -4,6 +4,8 @@ import { toggleAddTask, addTask } from '../actions/index';
 import CloseIcon from '../assets/icons/close.icon';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from './Loading';
+import Dropdown from './BaseComponents/Dropdown';
+import { filterNameAndId } from '../utils';
 
 // ADD VALIDATORS
 export default function AddTaskModal() {
@@ -13,6 +15,8 @@ export default function AddTaskModal() {
     const [priority, setPriority] = useState('');
     const [assignTo, setAssignTo] = useState('');
     const addingTask = useSelector(state => state.tasksReducer.addingTask);
+    const users = useSelector(state => state.usersReducer.users);
+    const elements = filterNameAndId(users);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -46,8 +50,8 @@ export default function AddTaskModal() {
                     </label>
                     <label>
                         ASSIGN TO
-                        <input type='text' name='assignTo' onChange={e => setAssignTo(e.target.value)} />
                     </label>
+                    <Dropdown elements={elements} onChange={setAssignTo} />
                     <input className={addingTask ? 'add-button disabled' : 'add-button'} type="submit" value="Add Task" required />
                 </form>
                 {addingTask && <Loading />}

@@ -1,10 +1,43 @@
+@import './base/colors.scss';
+//@import './base/constants.scss';
+
 .task-box-wrapper {
     display: flex;
     flex-direction: column;
     margin: 15px;
     padding: 15px;
     //width: 200px;
-    .name {
-        font-weight: bold;
+    border: 1px solid;
+    border-left: 7px solid;
+    border-radius: 5px;
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .title {
+            .name{
+                font-weight: bold;
+                font-size: 20px;
+            }
+            .priority{
+                
+            }
+            
+        }
+        .date{
+            color: $gray;
+            font-style: italic;
+        }
     }
+
+    .mark-task{
+        cursor: pointer;
+        text-decoration: underline;
+        color: $link;
+        align-self: flex-end;
+    }
+    .mark-task:hover{
+        opacity: 0.8;
+    }
+
 }

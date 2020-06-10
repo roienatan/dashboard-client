@@ -16,7 +16,7 @@ export default function MenuMobile() {
         dispatch(toggleMenu(false));
     }
     const menuOptions = MENU_OPTIONS.map((option, index) => {
-        return <div
+        return option.accessibleTo.includes(sessionStorage.getItem('privileges')) && <div
             key={index}
             className='option'
             onClick={() => handleClick(option.pathname)}>{option.name}

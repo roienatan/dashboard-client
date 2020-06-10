@@ -8,9 +8,10 @@ import LogoutIcon from '../assets/icons/logout.icon';
 export default function Tooltip() {
     const dispatch = useDispatch();
     const handleLogout = () => {
-        removeSessionData();
         dispatch(logout());
+        removeSessionData(); 
     }
+    
     return (
         <div className='tooltip-wrapper'>
             <div className='logout' onClick={() => handleLogout()}>

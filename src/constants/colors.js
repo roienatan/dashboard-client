@@ -6,7 +6,11 @@ const COLORS = {
     contentWhite: '#E4E8E2',
     contentWhiteDarker: '#CCCCCC',
     cyan: '#24B5B4',
-    black: '#000000'
+    black: '#000000',
+    red: '#ff4040',
+    orange: '#ffa500',
+    green: '#4D9E45',
+    gray: '#A29D9C'
 }
 
 export const LIGHT_MODE = {
@@ -23,4 +27,20 @@ export const DARK_MODE = {
     ActionsBarColor: COLORS.contentBlackDarker,
     highlightedColor: COLORS.cyan,
     textColor: COLORS.contentWhite
+}
+
+export const TASK_LOW = {
+    mainColor: COLORS.green
+}
+
+export const TASK_MEDIUM = {
+    mainColor: COLORS.orange
+}
+
+export const TASK_HIGH = {
+    mainColor: COLORS.red
+}
+
+export const TASK_COMPLETED = {
+    mainColor: COLORS.gray
 }

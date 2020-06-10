@@ -63,3 +63,9 @@ export const toggleAddTask = showAddTask => ({
     type: types.TOGGLE_ADD_TASK,
     showAddTask
 })
+
+export const updateTaskPriority = (taskId, priority) => ({
+    type: types.UPDATE_TASK_PRIORITY,
+    taskId,
+    priority
+})

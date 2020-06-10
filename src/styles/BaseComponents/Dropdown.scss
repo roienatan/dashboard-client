@@ -1,0 +1,53 @@
+@import "../base/colors.scss";
+
+.dropdown-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px;
+    position: relative;
+    .dropdown-selection {
+        display: flex;
+        justify-content: space-between;
+        .dropdown-toggle {
+            cursor: pointer;
+            background: url('../../assets/icons/arrow.icon.svg') no-repeat;
+            width: 20px;
+            transform: rotate(-90deg);
+        }
+    }
+    .dropdown-open {
+        display: flex;
+        flex-direction: column;
+        top: 20px;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+        .dropdown-input-decoration {
+            color: black;
+            background: url('../../assets/icons/search.icon.svg') no-repeat $white;
+            text-indent: 25px;
+            padding: 10px;
+            background-position-x: 5px;
+            background-size: 25px;
+            background-position-y: 5px;
+        }
+        .elements-wrapper {
+            display: flex;
+            flex-direction: column;
+            max-height: 100px;
+            overflow-y: auto;
+            background-color: #292929;
+            padding: 5px;
+            .element {
+            }
+            .element:hover {
+                background-color: gray;
+                cursor: pointer;
+            }
+            .no-results {
+                align-self: center;
+                color: gray;
+            }
+        }
+    }
+}

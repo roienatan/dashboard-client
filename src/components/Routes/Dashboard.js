@@ -3,11 +3,12 @@ import '../../styles/Routes/Dashboard.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThemeContext } from '../../Contexts/index';
 import ActionsBar from '../ActionsBar';
-import { getAllTasks, getUserTasks, toggleAddTask } from '../../actions/index';
+import { getAllTasks, getUserTasks, toggleAddTask, getUsers } from '../../actions/index';
 import AddIcon from '../../assets/icons/add.icon';
 import AddTaskModal from '../AddTaskModal';
 import Loading from '../Loading';
 import TaskBox from '../TaskBox';
+import { isAdmin } from '../../utils';
 
 export default function Dashboard() {
     const dispatch = useDispatch();
@@ -16,10 +17,10 @@ export default function Dashboard() {
     const tasksData = useSelector(state => state.tasksReducer.tasks);
     const showAddUser = useSelector(state => state.tasksReducer.showAddTask);
 
-    // need to distiguish between admin and user
     useEffect(() => {
-        //dispatch(getAllTasks());
-        //dispatch(getUserTasks(userId));
+        isAdmin() && dispatch(getAllTasks());
+        isAdmin() && dispatch(getUsers());
+        !isAdmin() && dispatch(getUserTasks(sessionStorage.getItem('userId')));
     }, [])
 
     const tasks = tasksData.map((task, index) => {
@@ -30,9 +31,9 @@ export default function Dashboard() {
         <div className='dashboard-wrapper'>
             <ActionsBar>
                 <div>filter</div>
-                <div onClick={() => dispatch(toggleAddTask(true))}>
+                {isAdmin() && <div onClick={() => dispatch(toggleAddTask(true))}>
                     <AddIcon fill={color.textColor} />
-                </div>
+                </div>}
             </ActionsBar>
             <div className='tasks-elements-wrapper'>
                 {tasks.length === 0 ? <div className='nothing-here'>Nothing Here</div> : tasks}

@@ -5,6 +5,7 @@ import Users from './Routes/Users';
 import Messages from './Routes/Messages';
 import Support from './Routes/Support';
 import About from './Routes/About';
+import { isAdmin } from '../utils';
 
 
 export default function Routes() {
@@ -13,9 +14,9 @@ export default function Routes() {
             <Route path='/dashboard'>
                 <Dashboard />
             </Route>
-            <Route path='/users'>
+            {isAdmin() && <Route path='/users'>
                 <Users />
-            </Route>
+            </Route>}
             <Route path='/messages'>
                 <Messages />
             </Route>

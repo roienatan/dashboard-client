@@ -1,4 +1,4 @@
-import { GET_USER_TASKS, GET_USER_TASKS_RECEIVED, TOGGLE_ADD_TASK, ADD_TASK, ADD_TASK_FAILED } from '../constants/action-types';
+import * as types from '../constants/action-types';
 
 const initialState = {
     tasks: [],
@@ -9,28 +9,39 @@ const initialState = {
 
 export const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_USER_TASKS:
+        case types.GET_TASKS:
+            return {
+                ...state,
+                loading: true
+            }
+        case types.GET_TASKS_RECEIVED:
             return {
                 ...state,
                 tasks: action.tasks,
-                loading: true
-            }
-        case GET_USER_TASKS_RECEIVED:
-            return {
-                ...state,
                 loading: false
             }
-        case TOGGLE_ADD_TASK:
+        case types.GET_TASKS_FAILED:
+            return {
+                ...state,
+                tasks: []
+            }
+        case types.TOGGLE_ADD_TASK:
             return {
                 ...state,
                 showAddTask: action.showAddTask
             }
-        case ADD_TASK:
+        case types.ADD_TASK:
             return {
                 ...state,
                 addingTask: true
             }
-        case ADD_TASK_FAILED:
+        case types.TASK_ADDED_SUCCESSFULLY:
+            return {
+                ...state,
+                addingTask: false,
+                showAddTask: false
+            }
+        case types.ADD_TASK_FAILED:
             return {
                 ...state,
                 addingTask: false

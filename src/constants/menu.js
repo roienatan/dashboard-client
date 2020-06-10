@@ -2,27 +2,32 @@ export const MENU_OPTIONS = [
     {
         pathname: 'dashboard',
         name: 'Dashboard',
-        main: true
+        main: true,
+        accessibleTo: ['admin', 'user']
     },
     {
         pathname: 'users',
         name: 'Users',
-        main: true
+        main: true,
+        accessibleTo: ['admin']
     },
     {
         pathname: 'messages',
         name: 'Messages',
-        main: true
+        main: true,
+        accessibleTo: ['admin', 'user']
     },
     {
         pathname: 'support',
         name: 'Support',
-        main: false
+        main: false,
+        accessibleTo: ['admin', 'user']
     },
     {
         pathname: 'about',
         name: 'About',
-        main: false
+        main: false,
+        accessibleTo: ['admin', 'user']
     }
 ];
 

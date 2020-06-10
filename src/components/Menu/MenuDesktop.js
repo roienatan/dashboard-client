@@ -5,6 +5,7 @@ import HamburgerIcon from '../../assets/icons/hamburger.icon';
 import { ThemeContext } from '../../Contexts/index';
 import { MENU_OPTIONS } from '../../constants/menu';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function MenuDesktop() {
 
@@ -14,14 +15,17 @@ export default function MenuDesktop() {
     const color = useContext(ThemeContext);
     const menuOptions = [];
     const moreOptions = [];
+    //const privileges = useSelector(state => state.authReducer.userDetails.privileges);
 
     MENU_OPTIONS.forEach((option, index) => {
-        const optionDiv = <div
-            key={index}
-            className={location.pathname.includes(option.pathname) ? 'option selected' : 'option'}
-            style={{ borderColor: `${color.highlightedColor}` }}
-            onClick={() => history.push(`/${option.pathname}`)}>{option.name}</div>
-        option.main ? menuOptions.push(optionDiv) : moreOptions.push(optionDiv);
+        if (option.accessibleTo.includes(sessionStorage.getItem('privileges'))) {
+            const optionDiv = <div
+                key={index}
+                className={location.pathname.includes(option.pathname) ? 'option selected' : 'option'}
+                style={{ borderColor: `${color.highlightedColor}` }}
+                onClick={() => history.push(`/${option.pathname}`)}>{option.name}</div>
+            option.main ? menuOptions.push(optionDiv) : moreOptions.push(optionDiv);
+        }
     })
 
     return (

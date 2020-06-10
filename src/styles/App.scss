@@ -1,5 +1,5 @@
-@import "./base/colors.scss";
-@import "./base/constants.scss";
+@import './base/colors.scss';
+@import './base/constants.scss';
 
 .app-wrapper {
     height: 100%;
@@ -43,6 +43,27 @@ select {
 fieldset {
     border-color: $gray;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $main-black; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 
 @media only screen and (max-width: $mobile-breakpoint) {
     .app-wrapper {

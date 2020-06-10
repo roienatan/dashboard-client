@@ -1,6 +1,7 @@
 import { all, put, takeLatest } from 'redux-saga/effects'
 import { API } from '../services/api';
 import * as types from '../constants/action-types';
+import { addSessionData } from '../utils';
 
 function* login(payload) {
     try {
@@ -9,10 +10,7 @@ function* login(payload) {
             return res.json();
         });
         yield put({ type: types.LOGIN_SUCCESS, userDetails: response.userDetails });
-        sessionStorage.setItem('authenticated', 'true');
-        sessionStorage.setItem('token', response.token);
-        sessionStorage.setItem('userId', response.userDetails._id);
-
+        addSessionData(response.userDetails, response.token);
     } catch (error) {
         yield put({ type: types.LOGIN_FAILED });
     }
@@ -20,7 +18,14 @@ function* login(payload) {
 
 function* fetchUsers() {
     try {
-        const users = yield fetch(API.GET_USERS).then(res => res.json());
+        const users = yield fetch(API.GET_USERS, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': sessionStorage.getItem("token")
+            }
+        }).then(res => res.json());
         yield put({ type: types.USERS_RECEIVED, users: users });
     } catch (error) {
         yield put({ type: types.USER_FAILED });
@@ -28,21 +33,35 @@ function* fetchUsers() {
 
 }
 
-function* fetchTasksByUserId() {
+function* fetchUserTasks(payload) {
     try {
-        const tasks = yield fetch(API.GET_TASKS_BY_USER_ID + 'userID').then(res => res.json());
-        yield put({ type: types.GET_USER_TASKS_RECEIVED, tasks: tasks })
+        const tasks = yield fetch(API.GET_USER_TASKS + payload.userId, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': sessionStorage.getItem("token")
+            }
+        }).then(res => res.json());
+        yield put({ type: types.GET_TASKS_RECEIVED, tasks: tasks })
     } catch (error) {
-        yield put({ type: types.GET_USER_TASKS_FAILED });
+        yield put({ type: types.GET_TASKS_FAILED });
     }
 }
 
 function* fetchAllTasks() {
     try {
-        const tasks = yield fetch(API.GET_ALL_TASKS).then(res => res.json());
-        yield put({ type: types.GET_ALL_TASKS_RECEIVED, tasks: tasks })
+        const tasks = yield fetch(API.GET_ALL_TASKS, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': sessionStorage.getItem("token")
+            }
+        }).then(res => res.json());
+        yield put({ type: types.GET_TASKS_RECEIVED, tasks: tasks })
     } catch (error) {
-        yield put({ type: types.GET_ALL_TASKS_FAILED });
+        yield put({ type: types.GET_TASKS_FAILED });
     }
 }
 
@@ -82,13 +101,30 @@ function* addTask(payload) {
     }
 }
 
+function* updateTaskPriority(payload) {
+    try {
+        yield fetch(API.UPDATE_TASK_PRIORITY + '/taskId/' + payload.taskId + '/priority/' + payload.priority, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': sessionStorage.getItem("token")
+            }
+        })
+        yield fetchAllTasks();
+    } catch (error) {
+
+    }
+}
+
 function* actionWatcher() {
     yield takeLatest(types.LOGIN, login);
     yield takeLatest(types.GET_USERS, fetchUsers);
     yield takeLatest(types.ADD_USER, addUser);
-    yield takeLatest(types.GET_USER_TASKS, fetchTasksByUserId);
+    yield takeLatest(types.GET_USER_TASKS, fetchUserTasks);
     yield takeLatest(types.GET_ALL_TASKS, fetchAllTasks);
     yield takeLatest(types.ADD_TASK, addTask);
+    yield takeLatest(types.UPDATE_TASK_PRIORITY, updateTaskPriority);
 }
 
 export default function* rootSaga() {
